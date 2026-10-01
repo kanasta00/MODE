@@ -1,0 +1,13 @@
+numpy
+pandas
+matplotlib
+scipy
+scikit-learn
+pymoo
+torch
+tqdm
+codecarbon
+Cython
+setuptools
+wheel
+ipykernel
