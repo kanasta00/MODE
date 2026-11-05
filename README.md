@@ -604,12 +604,12 @@ The current MODE implementation tunes the following variables:
 | Hyperparameter | Type | Search range |
 |---|---|---:|
 | Window size | Integer | 5–20 |
-| Learning rate | Continuous | \(10^{-4}\)–\(10^{-1}\) |
+| Learning rate | Continuous | 0.0001–0.1 |
 | Batch size | Integer | 8–128 |
 | Hidden dimension | Integer | 2–10 |
 | Epochs | Integer | 50–150 |
-| LSTM layers | Integer | 1–3 |
-| Number of Soft-DTW clusters \(K\) | Integer | 3–10 |
+| LSTM layers | Integer | 1–5 |
+| Number of Soft-DTW clusters \(K\) | Integer | 2–10 |
 
 Internally, evolutionary operators work on a real-valued representation. Integer-valued parameters are rounded before model evaluation and constrained to their valid ranges.
 
