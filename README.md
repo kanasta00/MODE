@@ -576,7 +576,7 @@ results, problem, duration = AS.ApplyingMODE(
     normalize=True,
     use_divergence=False,
     min_cluster_size=2,
-    split=0.70,
+    split=0.80,
     D_star_tp=1.8,
 )
 
