@@ -5,10 +5,6 @@
 **MODE** is a multi-objective hyperparameter optimization framework designed for efficient machine-learning training and forecasting in dynamic and resource-constrained edge environments. It uses **Soft-DTW clustering** to summarize resource-usage time series with representative barycenters, allowing an LSTM model to be trained on a much smaller dataset. NSGA-II jointly optimizes prediction accuracy **(validation RMSE)**, training-data compactness **(number of clusters, K)**, and **prediction-error stability (Δσ²)**. An ASF-based selection then chooses one configuration from the resulting Pareto front. The work evaluates MODE on CPU and RAM workload traces collected through the **CODEF** experimentation framework and on an independent public **Raspberry Pi** resource-usage dataset.
 
 <p align="center">
-  <strong>Multi-Objective Hyperparameter Tuning for Efficient Training at Dynamic Edge Environments</strong>
-</p>
-
-<p align="center">
   <a href="https://doi.org/10.5683/SP3/GOZAJE">Raspberry Pi dataset</a>
   ·
   <a href="https://doi.org/10.5281/zenodo.19005332">CODEF resource dataset</a>
