@@ -35,16 +35,10 @@
 | `MOTPE_LP_scalability.ipynb` | Client-count scalability experiment for MOTPE + LP-Mirror. |
 
 Reference for MO-NAS:
-
-> Q. Cao, S. Liu, A. J. Varghese, J. Darbon, M. S. Triantafyllou, and G. E. Karniadakis,  
-> “Automatic selection of the best neural architecture for time series forecasting,”  
-> *Nature Communications*, 2026.
+> Q. Cao, S. Liu, A. J. Varghese, J. Darbon, M. S. Triantafyllou, and G. E. Karniadakis, “Automatic selection of the best neural architecture for time series forecasting,” *Nature Communications*, 2026.
 
 Reference for MOTPE:
-
-> Y. Ozaki, Y. Tanigaki, S. Watanabe, M. Nomura, and M. Onishi,  
-> “Multiobjective Tree-Structured Parzen Estimator,”  
-> *Journal of Artificial Intelligence Research*, vol. 73, pp. 1209–1250, 2022.
+> Y. Ozaki, Y. Tanigaki, S. Watanabe, M. Nomura, and M. Onishi, “Multiobjective Tree-Structured Parzen Estimator,” *Journal of Artificial Intelligence Research*, vol. 73, pp. 1209–1250, 2022.
 
 ### Analysis and figures
 
