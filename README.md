@@ -34,6 +34,9 @@ Reference for MO-NAS:
 Reference for MOTPE:
 > Y. Ozaki, Y. Tanigaki, S. Watanabe, M. Nomura, and M. Onishi, “Multiobjective Tree-Structured Parzen Estimator,” *Journal of Artificial Intelligence Research*, vol. 73, pp. 1209–1250, 2022.
 
+Reference for LP-mirrors:
+> X. Ao and M. Chen, “Efficient data selection for time series forecasting using a lightweight linear proxy framework,” Scientific Reports, vol. 16, 04 2026.
+
 ### Analysis and figures
 
 | File | Purpose |
