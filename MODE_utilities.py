@@ -1651,8 +1651,8 @@ class Clustering_centralized_no_stability(ElementwiseProblem):
         normalize=True,
         use_divergence=True,
         min_cluster_size=1,
-        split=0.70,
-        D_star_tp=1.8,
+        split=0.80,
+        D_star_tp=2.6,
         ):
         self.K_max = 10
         self.offline_data = np.asarray(offline_data, dtype=np.float64)
@@ -1669,8 +1669,8 @@ class Clustering_centralized_no_stability(ElementwiseProblem):
             n_var=7,
             n_obj=2,
                     #    ws,   lr,  bs, nd, ep, ly, k
-            xl=np.array([5, 0.0001, 8, 2, 50, 1, 3]),
-            xu=np.array([20, 0.1, 128, 10, 150, 3, self.K_max])
+            xl=np.array([5, 0.0001, 8, 2, 50, 1, 2]),
+            xu=np.array([20, 0.1, 128, 10, 150, 5, self.K_max])
         )
         # Cache clustering outputs per k
         self.cluster_cache = {}
@@ -1903,9 +1903,9 @@ def ApplyingMODE_no_stability(
     normalize=True,
     use_divergence=True,
     min_cluster_size=1,
-    split=0.70,
+    split=0.80,
     # random_state=42,
-    D_star_tp=1.8,
+    D_star_tp=2.6,
 ):
     """
     Hyperparameter tuning with MODE / NSGA-II.
@@ -1933,7 +1933,7 @@ def ApplyingMODE_no_stability(
         n_offsprings=num_offsprings,
         sampling=LHS(),
         crossover=SBX(prob=0.9, eta=15),
-        mutation=PM(eta=20),
+        mutation=PM(prob=0.9, eta=20),
         eliminate_duplicates=True,)
     Termination_criterion = get_termination(
         "n_gen",
@@ -2158,7 +2158,7 @@ def ApplyingASF_no_stability(
 def train_model_from_full_series(
     series,
     architecture,
-    split=0.70,
+    split=0.80,
     normalized=True,
 ):
     """
@@ -2228,8 +2228,8 @@ class Clustering_centralized(ElementwiseProblem):
         normalize=True,
         use_divergence=True,
         min_cluster_size=1,
-        split=0.70,
-        D_star_tp=1.8,
+        split=0.80,
+        D_star_tp=2.6,
         ):
         self.K_max = 10
         self.offline_data = np.asarray(offline_data, dtype=np.float64)
@@ -2246,8 +2246,8 @@ class Clustering_centralized(ElementwiseProblem):
             n_var=7,
             n_obj=3,
                     #    ws,   lr,  bs, nd, ep, ly, k
-            xl=np.array([5, 0.0001, 8, 2, 50, 1, 3]),
-            xu=np.array([20, 0.1, 128, 10, 150, 3, self.K_max])
+            xl=np.array([5, 0.0001, 8, 2, 50, 1, 2]),
+            xu=np.array([20, 0.1, 128, 10, 150, 5, self.K_max])
         )
         # Cache clustering outputs per k
         self.cluster_cache = {}
@@ -2679,7 +2679,7 @@ class Clustering_centralized(ElementwiseProblem):
             ] = None
 
 
-def compute_instability_on_batch(model_instance, batch, normalize=True, D_star_tp=1.8):
+def compute_instability_on_batch(model_instance, batch, normalize=True, D_star_tp=2.6):
     """
     Reuse Arsenal's stability logic without running a new MODE search.
     This gives the same residual-instability score used by MODE.
@@ -2706,9 +2706,9 @@ def ApplyingMODE(
     normalize=True,
     use_divergence=True,
     min_cluster_size=1,
-    split=0.70,
+    split=0.80,
     # random_state=42,
-    D_star_tp=1.8,
+    D_star_tp=2.6,
 ):
     """
     Hyperparameter tuning with MODE / NSGA-II.
@@ -2736,7 +2736,7 @@ def ApplyingMODE(
         n_offsprings=num_offsprings,
         sampling=LHS(),
         crossover=SBX(prob=0.9, eta=15),
-        mutation=PM(eta=20),
+        mutation=PM(prob=0.9, eta=20),
         eliminate_duplicates=True,)
     Termination_criterion = get_termination(
         "n_gen",
@@ -2947,7 +2947,7 @@ def ApplyingASF(
 
 
 
-def local_q_bounds(previous_q, neigh_per=0.50, q_min=3, q_max=10):
+def local_q_bounds(previous_q, neigh_per=0.50, q_min=2, q_max=10):
     """Integer lower/upper bounds for Q around previous_q."""
     lo = int(np.ceil(max(q_min, previous_q * (1.0 - neigh_per))))
     hi = int(np.floor(min(q_max, previous_q * (1.0 + neigh_per))))
@@ -3434,7 +3434,7 @@ def concatenate_barycenters(barycenters):
 def train_model_from_barycenters(
     barycenters,
     architecture,
-    split=0.7,
+    split=0.8,
     normalized=True,
 ):
     """Train/validate using a chronological split *within each barycenter*.
