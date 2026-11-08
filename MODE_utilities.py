@@ -3281,12 +3281,14 @@ class Instance:
         series_length=None,
         train_offset=0,
         val_offset=0,
+        val_series_length=None,
     ):
 
         self.NORMAL = NORMALIZED
         self.chromosome = chromosome
 
         self.series_length = series_length
+        self.val_series_length = val_series_length if val_series_length is not None else series_length
         self.train_offset = train_offset
         self.val_offset = val_offset
 
@@ -3323,14 +3325,16 @@ class Instance:
         if train_stage:
             data = self.Y_tr
             offset = self.train_offset
+            boundary_length = self.series_length
         else:
             data = self.Y_va
             offset = self.val_offset
+            boundary_length = self.val_series_length
 
         X, y = create_sequences(
             data=data,
             seq_length=window,
-            series_length=self.series_length,
+            series_length=boundary_length,
             offset=offset,
         )
         if len(X) == 0:
@@ -3433,37 +3437,44 @@ def train_model_from_barycenters(
     split=0.7,
     normalized=True,
 ):
-    """
-    Train the LSTM on concatenated barycenters while excluding
-    windows that cross artificial barycenter boundaries.
-    """
+    """Train/validate using a chronological split *within each barycenter*.
 
-    # Every barycenter has the same known length.
-    series_length = len(
-        np.asarray(barycenters[0]).ravel()
+    Each barycenter contributes its prefix to the pooled training data
+    and its suffix to the pooled validation data. The boundary-aware
+    sample builder uses the appropriate segment length for each pool.
+    """
+    barycenters_arr = np.asarray(
+        [np.asarray(b, dtype=np.float64).ravel() for b in barycenters],
+        dtype=np.float64,
     )
+    if barycenters_arr.ndim != 2 or barycenters_arr.shape[0] < 1:
+        raise ValueError("barycenters must contain equal-length nonempty series")
+    series_length = barycenters_arr.shape[1]
+    if not 0.0 < split < 1.0:
+        raise ValueError("split must be strictly between 0 and 1")
+    split_idx = int(split * series_length)
+    window = int(architecture["window"])
+    if split_idx <= window or (series_length - split_idx) <= window:
+        raise ValueError(
+            f"Each training and validation segment must contain more than "
+            f"window={window} points; got {split_idx} and "
+            f"{series_length - split_idx}."
+        )
 
-    # Concatenate exactly as before.
-    Y = concatenate_barycenters(barycenters)
-
-    # Same train/validation split.
-    split_idx = int(split * len(Y))
-
-    Train = Y[:split_idx]
-    Val = Y[split_idx:]
+    Train = barycenters_arr[:, :split_idx].reshape(-1)
+    Val = barycenters_arr[:, split_idx:].reshape(-1)
 
     ML = Instance(
         train_data=Train,
         val_data=Val,
         chromosome=architecture,
         NORMALIZED=normalized,
-        series_length=series_length,
+        series_length=split_idx,
+        val_series_length=series_length - split_idx,
         train_offset=0,
-        val_offset=split_idx,
+        val_offset=0,
     )
-
     ML.train_phase()
-
     return ML
 
 
