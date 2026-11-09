@@ -80,20 +80,13 @@ The core MODE module also requires its `soft_dtw_fast` backend. Ensure this loca
 ## Reproduce the experiments
 
 1. **Prepare the datasets** in the folders described above.
-2. **Run the main MODE experiments:** open `MODE_CODEF_RPi_8_Sequential_Per_Barycenter.ipynb`, check its dataset paths and utilities-module import, then run the cells in order. It runs CODEF I/II/III and RPi, CPU and RAM, one experiment at a time.
+2. **Run the main MODE experiments:** open `Execute_MODE.ipynb`, check its dataset paths and utilities-module import, then run the cells in order. It runs CODEF I/II/III and RPi, CPU and RAM, one experiment at a time.
 3. **Run the baselines:** use the corresponding GA, CCQAROA, MPC, MO-NAS/Cao, and MOTPE + LP-Mirror notebooks with the same datasets and evaluation protocol.
-4. **Run additional analyses as needed:** use the ablation, scalability, permutation, and mutation-sensitivity notebooks listed above.
-5. **Generate figures:** run `FINAL_PLOTTING.ipynb` or `MODE_Comparative_Plots_CODEF_RPi_8.ipynb` using the saved experimental outputs. Plotting does not require repeating HPO.
 
-The sequential MODE notebook saves a run-level summary (`mode_runs_summary.csv`) and raw-scale test RMSE values for individual series (`mode_all_raw_rmse.csv`). Other notebooks may use their own output filenames; check their configuration cells.
-
-**Reproducibility:** Keep the HPO search space, NSGA-II settings, preprocessing, random seeds, and evaluation protocol aligned across compared methods. In particular, the manuscript's polynomial-mutation setting is `PM(prob=0.9, eta=20)`; verify the repository implementation uses this setting before reproducing the reported configuration.
 
 ## Manuscript
 
 K. Anastasiou, S. Skaperas, G. Koukis, V. Tsaoussidis, and I. Sakellariou, **“Multi-Objective Hyperparameter Tuning for Efficient Training at Dynamic Edge Environments.”** Manuscript under review.
 
-External datasets remain subject to their original attribution and licensing terms.
-are rounded before model evaluation and constrained to their valid ranges.
 
 ---
