@@ -11,7 +11,7 @@
 | File | Purpose |
 |---|---|
 | `MODE_utilities.py` | Core MODE implementation: data loading, Soft-DTW clustering and barycenters, LSTM training/evaluation, NSGA-II search, stability objective, ASF selection, and timing utilities. |
-| `Running_MODE.ipynb` | Interactive notebook for running MODE on one selected dataset and inspecting the resulting Pareto front, selected model, and test metrics. |
+| `Execute_MODE.ipynb` | Interactive notebook for running MODE on every dataset. |
 | `MODE_CODEF_RPi_8_Sequential_Per_Barycenter.ipynb` | Runs the **eight main MODE experiments sequentially**: CODEF Experiments I–III (CPU and RAM) and Raspberry Pi (CPU and RAM). Saves run summaries and raw-scale per-series test RMSE to CSV. |
 | `MODE_no_stability.ipynb` | MODE ablation without the stability objective; optimizes RMSE and *K*. |
 | `RPi_CPU_MODE_Ablation_CPonly_RMSEonly.ipynb` | RPi CPU ablation experiments for the additional reduced-objective configurations. |
