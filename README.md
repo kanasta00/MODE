@@ -10,23 +10,21 @@
 
 | File | Purpose |
 |---|---|
-| `MODE_utilities.py` | Core MODE implementation: data loading, Soft-DTW clustering and barycenters, LSTM training/evaluation, NSGA-II search, stability objective, ASF selection, and timing utilities. |
-| `Execute_MODE.ipynb` | Interactive notebook for running MODE on every dataset. |
-| `MODE_CODEF_RPi_8_Sequential_Per_Barycenter.ipynb` | Runs the **eight main MODE experiments sequentially**: CODEF Experiments I–III (CPU and RAM) and Raspberry Pi (CPU and RAM). Saves run summaries and raw-scale per-series test RMSE to CSV. |
-| `MODE_no_stability.ipynb` | MODE ablation without the stability objective; optimizes RMSE and *K*. |
-| `RPi_CPU_MODE_Ablation_CPonly_RMSEonly.ipynb` | RPi CPU ablation experiments for the additional reduced-objective configurations. |
-| `MODE_RPi_CPU_Mutation_Sensitivity_Reviewer_2_11.ipynb` | Tests offspring-level mutation probabilities 0.3, 0.5, 0.7, 0.9, and 1.0 on RPi CPU, using repeated seeds. |
+| `MODE_utilities.py` | Core MODE implementation: all necessary functions and classes. |
+| `Execute_MODE.ipynb` | Runs the **eight main MODE experiments sequentially**: CODEF Experiments I–III (CPU and RAM) and Raspberry Pi (CPU and RAM).|
+| `MODE_no_stability.ipynb` | MODE without the stability objective; optimizes RMSE and *K*. |
+| `MODE_RPi_CPU_Mutation_Sensitivity.ipynb` | Tests offspring-level mutation probabilities 0.3, 0.5, 0.7, 0.9, and 1.0 on RPi CPU.|
 
 ## Comparison methods
 
 | File | Purpose |
 |---|---|
-| `GA.ipynb` | Genetic Algorithm baseline for LSTM hyperparameter tuning. |
+| `GA.ipynb` | Genetic Algorithm baseline for LSTM hyperparameter tuning using pygad. |
 | `Benchmark_CCQAROA.ipynb` + `CCQAROA.py` | CCQAROA baseline notebook and supporting optimizer implementation. |
 | `MPC.ipynb` | Model-per-cluster baseline: cluster-specific LSTM models and optimization. |
 | `CAO_MOO_LSTM.ipynb` + `MOO_2d_iterate_add_neighbor.py` | Adapted multi-objective architecture-search baseline and its neighborhood-search helper. |
 | `MOTPE_LP_mirror.ipynb` | MOTPE multi-objective HPO combined with LP-Mirror training-data selection. |
-| `MOTPE_LP_scalability.ipynb` | Client-count scalability experiment for MOTPE + LP-Mirror. |
+| `MOTPE_LP_scalability.ipynb` | Resource-demand profile-count scalability experiment for MOTPE + LP-Mirror. |
 
 Reference for MO-NAS:
 > Q. Cao, S. Liu, A. J. Varghese, J. Darbon, M. S. Triantafyllou, and G. E. Karniadakis, “Automatic selection of the best neural architecture for time series forecasting,” *Nature Communications*, 2026.
