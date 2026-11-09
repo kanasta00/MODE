@@ -35,17 +35,6 @@ Reference for MOTPE:
 Reference for LP-mirrors:
 > X. Ao and M. Chen, “Efficient data selection for time series forecasting using a lightweight linear proxy framework,” Scientific Reports, vol. 16, 04 2026.
 
-### Analysis and figures
-
-| File | Purpose |
-|---|---|
-| `MODE_scalability_exp.ipynb` | MODE execution-time breakdown and scalability with increasing numbers of profiles or time-series lengths. |
-| `MODE_permutations_exp.ipynb` | Tests how permuting complete residual blocks affects the stability objective while preserving order inside each block. |
-| `FINAL_PLOTTING.ipynb` | Generates manuscript comparison figures from stored results. |
-| `MODE_Comparative_Plots_CODEF_RPi_8.ipynb` | Generates the three main comparison plot types: raw-scale RMSE boxplots, total execution time, and training-data size. |
-| `Visiualize copy.ipynb` | Additional visualizations of time series, clusters, barycenters, and predictions. |
-
-*Some repositories or downloaded copies may use slightly different filenames. Adjust the notebook/module names and paths to match your checkout.*
 
 ## Datasets
 
